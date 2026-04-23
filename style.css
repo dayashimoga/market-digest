@@ -1,14 +1,16 @@
 :root {
-    --bg-base: #0b0f19;
-    --bg-surface: #151a28;
-    --bg-panel: #1c2234;
-    --text-main: #f1f5f9;
-    --text-muted: #94a3b8;
-    --border-color: #2e364f;
-    --color-green: #10b981;
-    --color-red: #ef4444;
-    --color-yellow: #f59e0b;
-    --color-brand: #3b82f6;
+    --bg-base: #0B0E14; /* Deep modern dark */
+    --bg-surface: rgba(21, 26, 40, 0.6);
+    --bg-panel: rgba(28, 34, 52, 0.7);
+    --text-main: #E2E8F0;
+    --text-muted: #94A3B8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --color-green: #10B981;
+    --color-red: #EF4444;
+    --color-yellow: #F59E0B;
+    --color-brand: #3B82F6;
+    --glass-blur: blur(16px);
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
 }
 
 * {
@@ -20,6 +22,9 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-base);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.05), transparent 25%);
     color: var(--text-main);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -456,3 +461,57 @@ footer {
 .footer-links a:hover {
     color: var(--text-main);
 }
+
+/* Signal Badge */
+.signal-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.signal-badge.strong-buy { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+.signal-badge.buy { background: rgba(134,239,172,0.1); color: #86efac; border: 1px solid rgba(134,239,172,0.2); }
+.signal-badge.hold { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
+.signal-badge.sell { background: rgba(252,165,165,0.1); color: #fca5a5; border: 1px solid rgba(252,165,165,0.2); }
+.signal-badge.strong-sell { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+.group-header td { padding: 12px 0 4px !important; border: none !important; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+.hidden-mobile { }
+@media(max-width:768px) { .hidden-mobile { display: none !important; } }
+
+/* Technical Analysis */
+.ta-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.ta-gauge-container { flex: 1; min-width: 200px; text-align: center; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 1rem; }
+.ta-gauge-container h4 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.ta-value { margin-top: 0.5rem; font-size: 0.9rem; }
+.sr-levels { padding: 0.75rem; background: rgba(0,0,0,0.2); border-radius: 8px; }
+
+/* Investment Signal Cards */
+.signal-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+.signal-card { text-align: left; padding: 1rem; }
+.signal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.signal-confidence { display: flex; align-items: center; gap: 0.5rem; }
+.confidence-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.confidence-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+
+/* Paper Trading */
+.paper-portfolio { }
+.portfolio-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.portfolio-stats .stat { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 0.75rem; text-align: center; }
+.portfolio-stats .stat span { display: block; font-size: 0.75rem; margin-bottom: 0.25rem; }
+.portfolio-stats .stat strong { font-size: 1rem; }
+.pt-chart-container { height: 150px; margin-bottom: 1rem; }
+.pt-positions table { border-collapse: collapse; }
+.pt-positions th { text-align: center; font-size: 0.75rem; color: var(--text-muted); padding: 6px 4px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.pt-positions td { padding: 4px; }
+.btn-sm-buy { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.btn-sm-buy:hover { background: rgba(34,197,94,0.3); }
+.btn-sm-sell { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.btn-sm-sell:hover { background: rgba(239,68,68,0.3); }
+.trade-history { max-height: 200px; overflow-y: auto; }
+.text-muted { color: var(--text-muted); }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+

@@ -60,6 +60,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="quickutils-core.css">
     <link rel="stylesheet" href="style.css">
     
     <!-- Config Variables (injected by build/cloudflare pages) -->
@@ -183,6 +184,57 @@
                     </div>
                 </section>
 
+                <!-- Technical Analysis -->
+                <section class="info-card" id="techAnalysis">
+                    <div class="card-header">
+                        <h2>📊 Technical Analysis</h2>
+                    </div>
+                    <div class="ta-grid">
+                        <div class="ta-gauge-container">
+                            <h4>RSI (14-Day)</h4>
+                            <canvas id="rsiGauge" width="200" height="120"></canvas>
+                            <div id="rsiValue" class="ta-value">--</div>
+                        </div>
+                        <div class="ta-gauge-container">
+                            <h4>MACD Histogram</h4>
+                            <canvas id="macdChart" width="300" height="120"></canvas>
+                            <div id="macdSignal" class="ta-value">--</div>
+                        </div>
+                    </div>
+                    <div id="supportResistance" class="sr-levels mt-2"></div>
+                </section>
+
+                <!-- Investment Signals -->
+                <section class="info-card" id="investmentSignals">
+                    <div class="card-header">
+                        <h2>💡 Investment Signals</h2>
+                    </div>
+                    <div id="signalCards" class="signal-cards-grid"></div>
+                </section>
+
+                <!-- Paper Trading (merged from Stock Simulator) -->
+                <section class="info-card" id="paperTrading">
+                    <div class="card-header">
+                        <h2>📈 Paper Trading Simulator</h2>
+                    </div>
+                    <div class="paper-portfolio">
+                        <div class="portfolio-stats">
+                            <div class="stat"><span class="text-muted">Cash</span><strong id="ptCash">$10,000.00</strong></div>
+                            <div class="stat"><span class="text-muted">Holdings</span><strong id="ptHoldings">$0.00</strong></div>
+                            <div class="stat"><span class="text-muted">Total</span><strong id="ptTotal" style="font-size:1.1rem;">$10,000.00</strong></div>
+                            <div class="stat"><span class="text-muted">P&amp;L</span><strong id="ptPnl" style="color:#22c55e;">$0.00 (0.00%)</strong></div>
+                        </div>
+                        <div class="pt-chart-container">
+                            <canvas id="portfolioChart" height="150" style="width:100%;"></canvas>
+                        </div>
+                        <div id="ptPositions" class="pt-positions mt-2"></div>
+                        <details class="mt-2" style="font-size:0.85rem;">
+                            <summary style="cursor:pointer;color:var(--text-muted);">📋 Trade History</summary>
+                            <div id="tradeHistory" class="trade-history mt-1"></div>
+                        </details>
+                    </div>
+                </section>
+
                 <!-- Ads Section -->
                 <section class="ads-banner mt-4">
                      <ins class="adsbygoogle"
@@ -233,6 +285,13 @@
 
 
 
+
+
+
+
+
+
+
 <!-- QuickUtils Network Promo -->
 <div id="qu-promo-ribbon" style="position:relative; z-index:50; margin-top:2rem; padding:0; background:#111; border-top:1px solid rgba(128,128,128,0.3); text-align:center; font-family:sans-serif;">
    <button onclick="var c=document.getElementById('qu-promo-content');c.style.display=c.style.display==='none'?'block':'none';this.textContent=c.style.display==='none'?'🚀 Explore 90+ QuickUtils Apps ▼':'▲ Close'" style="width:100%;padding:10px;background:transparent;border:none;color:#aaa;cursor:pointer;font-size:0.85rem;font-family:inherit;">🚀 Explore 90+ QuickUtils Apps ▼</button>
@@ -263,6 +322,7 @@
       <a href="https://cron.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Cron Builder</a>
       <a href="https://cyberdefense.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Cyber Defense</a>
       <a href="https://dna.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">DNA Lab</a>
+      <a href="https://dailyfacts.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Dailyfacts</a>
       <a href="https://convert.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Data Converter</a>
       <a href="https://datasets.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Datasets Directory</a>
       <a href="https://decide.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Decision Maker</a>
@@ -326,6 +386,7 @@
       <a href="https://tools.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Tools Directory</a>
       <a href="https://travelbuilder.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Travel Builder</a>
       <a href="https://typing.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Typing Speed Test</a>
+      <a href="https://units.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Unit Converter</a>
       <a href="https://video.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Video Studio</a>
       <a href="https://weather.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Weather Dashboard</a>
       <a href="https://chess.quickutils.top" target="_blank" style="padding: 4px 10px; background: rgba(128,128,128,0.1); border-radius: 8px; font-size: 0.8rem; text-decoration: none; color: inherit; opacity: 0.8; transition: all 0.2s; white-space: nowrap;">Web Chess</a>
@@ -337,6 +398,13 @@
    </div>
 </div>
 <!-- /QuickUtils Network Promo -->
+
+
+
+
+
+
+
 
 
 
